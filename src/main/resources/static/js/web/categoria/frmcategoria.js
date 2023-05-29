@@ -37,7 +37,7 @@ $(document).on("click", "#btnguardar", function(){
 $(document).on("click", ".btneliminarcatego", function(){
 	$("#hddideliminarcategoria").val("");
 	$("#hddideliminarcategoria").val($(this).attr("data-idcatego"));
-	$("#mensajeeliminar").text("¿Está seguro de eliminar la "+ 
+	$("#mensajeeliminar").text("¿Está seguro de eliminar la categoria"+ 
 			$(this).attr("data-nombrecatego")+"?");
 	$("#modalEliminarCategoria").modal("show");
 })
