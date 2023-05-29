@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="layout::head">
+<meta charset="UTF-8">
+</head>
+<body>
+	<script th:src="@{/js/web/categoria/frmcategoria.js}" type="text/javascript"></script>
+	<nav th:insert="layout::menu"></nav>
+	<button type="button" id="btnagregar" class="btn btn-primary">Agregar Proveedor</button>
+	<hr />
+	<table class="table" id="tblproveedor">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Nombre</th>
+				<th scope="col">Dirección</th>
+				<th scope="col">Telefono</th>
+				<th scope="col">Correo</th>
+				<th scope="col">Actualizar</th>
+				<th scope="col">Eliminar</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="proveedor :${listarProveedor}">
+				<td th:text="${proveedor.idProv}"></td>
+				<td th:text="${proveedor.nombreProv}"></td>
+				<td th:text="${proveedor.direccionProv}"></td>
+				<td th:text="${proveedor.telefono}"></td>
+				<td th:text="${proveedor.correoProv}"></td>
+				<td>
+					<button type="button" class="btn btn-success btnactualizar"
+						th:data-idProv="${proveedor.idProv}"
+						th:data-nombreProv="${proveedor.nombreProv}"
+						th:data-direccionProv="${proveedor.direccionProv}"
+						th:data-telefonoProv="${proveedor.telefonoProv}"
+						th:data-correoProv="${proveedor.correoProv}">
+						<i class="fas fa-pen"></i>
+					</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-danger btneliminarprov"
+						th:data-idProv="${proveedor.idProv}"
+						th:data-nombreProv="${proveedor.nombreProv}">
+						<i class="fas fa-trash"></i>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<!-- Modal Registro / actualizacion Proveedor -->
+	<div class="modal fade" id="modalProveedor" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal Mantenimiento de Proveedor</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="mb-3">
+						<label for="txtidProv" class="form-label">ID</label> 
+						<input type="text" class="form-control" id="txtidProv" >
+					</div>
+					<div class="mb-3">
+						<label for="txtnombreProv" class="form-label">Nombre</label> 
+						<input type="text" class="form-control" id="txtnombreProv" >
+					</div>
+					<div class="mb-3">
+						<label for="txtdireccionProv" class="form-label">Direccion</label> 
+						<input type="text" class="form-control" id="txtdireccionProv" >
+					</div>
+					<div class="mb-3">
+						<label for="txttelefonoProv" class="form-label">Telefono</label> 
+						<input type="text" class="form-control" id="txttelefonoProv" >
+					</div>
+					<div class="mb-3">
+						<label for="txtcorreoProv" class="form-label">Correo</label> 
+						<input type="text" class="form-control" id="txtcorreoProv" >
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary"
+						data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary"
+						id="btnguardar">Guardar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- Modal Eliminar  -->
+	<div class="modal fade" id="modalEliminarProveedor" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5" id="exampleModalLabel">Modal Eliminar Proveedor</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">		
+					<label id="mensajeeliminar"></label>
+					<input type="hidden" id="hddideliminarproveedor" value="0">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+					<button type="button" class="btn btn-primary" id="btneliminar">Eliminar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
